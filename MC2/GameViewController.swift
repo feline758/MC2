@@ -8,11 +8,16 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import GameController
 
 class GameViewController: UIViewController {
+    
+    var virtualController: GCVirtualController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        Nyalain Controller
+        setupController()
         
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -99,6 +104,18 @@ class GameViewController: UIViewController {
             
             SCNTransaction.commit()
         }
+    }
+    
+    func setupController() {
+        let controllerConfig = GCVirtualController.Configuration()
+        
+        controllerConfig.elements = [
+            GCInputLeftThumbstick, GCInputRightThumbstick, GCInputButtonA, GCInputButtonB
+        ]
+        
+        let controller = GCVirtualController(configuration: controllerConfig)
+        controller.connect()
+        virtualController = controller
     }
     
     override var prefersStatusBarHidden: Bool {
