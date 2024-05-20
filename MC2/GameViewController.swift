@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        Nyalain Controller
         setupController()
         
         // create a new scene
